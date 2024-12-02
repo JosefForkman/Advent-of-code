@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-const file = readFileSync("example1.txt", { encoding: "utf8" });
+const file = readFileSync("input1.txt", { encoding: "utf8" });
 const fileArray = file
     .split("\r\n")
     .map((file) => file.split(" ").map((file) => Number(file)));
@@ -31,8 +31,11 @@ for (let i = 0; i < fileArray.length; i++) {
     status.push(row);
 }
 
+
+
 const sulusions = [];
 status.forEach((level) => sulusions.push(level.every((lev) => lev)));
+console.log(sulusions);
 
 const sulusion = sulusions.reduce(
     (previousValue, currentValue) =>
