@@ -1,31 +1,28 @@
 import { readFileSync } from "fs";
 
 let file = readFileSync("input1.txt", { encoding: "utf8" });
-file = `do()${file}`;
-const matches = file.match(/do\((.*?)don't\(\)/g) ?? [];
+const matchs = file.match(/mul\(\d+,\d+\)|do\(\)|don't\(\)/g);
 
-const formets = matches.map((matche) => {
-    const result = matche.match(/mul\(\d+,\d+\)/g);
+const values = [];
+let runing = true;
+matchs.forEach((match) => {
+    if (match == "don't()") {
+        runing = false;
+    } else if (match == "do()") {
+        runing = true;
+    }
 
-    return result;
+    if (runing && match != "do()") {
+        values.push(match);
+    }
 });
 
-const t = formets
-    .map((matche) => {
-        const results = [...matche.map((ma) => ma.match(/\((.*),(.*)\)/))].map(
-            (result) => [Number(result[1]), Number(result[2])],
-        );
-        // console.log(results);
-
-        return results;
-    })
-    .flat();
-console.log(t.filter((f) => f.length != 2));
-
-const sulusion = t.reduce(
+const sulusion = values.map((val) => val.match(/\d+/g)).reduce(
     (previousValue, currentValue) =>
-        previousValue += currentValue[0] * currentValue[1],
+        (previousValue += currentValue[0] * currentValue[1]),
     0,
 );
 
 console.log(sulusion);
+
+// console.log(values.map((val) => val.match(/\d+/g)));
