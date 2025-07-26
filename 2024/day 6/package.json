@@ -1,0 +1,21 @@
+{
+  "name": "day-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "prettier": "3.4.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@tsconfig/node22": "^22.0.0"
+  }
+}
