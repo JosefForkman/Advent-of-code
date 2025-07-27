@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Adventofcode\Day6\utils;
 
-use Adventofcode\Day6\utils\Query;
 
+
+use JetBrains\PhpStorm\NoReturn;
 
 class Router
 {
@@ -24,15 +25,15 @@ class Router
      */
     public function Get(string $path, callable $callback): void
     {
-        $pregematch = preg_match($this->convertRouteToRegex($path), $this->baseURL);
+        $regExCh = preg_match($this->convertRouteToRegex($path), $this->baseURL);
 
-        if ($pregematch) {
+        if ($regExCh) {
             $params = $this->GetQueryParams($path);
             $callback($params);
         }
     }
 
-    public function Middleware()
+    public function Middleware(): static
     {
         return $this;
     }
@@ -40,18 +41,23 @@ class Router
     /**
      * Render a View
      * @param string $path
-     * @param array|null $data
      * @return void
      */
-    public static function View(string $path, ?array $data = []): void
+    public static function View(string $path): void
     {
-        require_once dirname(__DIR__, 1) . "/" . "view" . "/" . $path . ".php";
-        return;
+        // check if it is a file or a directory
+        $filePath = dirname(__DIR__) . "/" . "view" . "/" . $path;
+        if (is_dir($filePath)) {
+            $filePath .= "/index.php";
+        } else {
+            $filePath .= ".php";
+        }
+        require_once $filePath;
     }
 
 
     /**
-     * Get the Querry Params
+     * Get the Query Params
      * @param string $path
      * @return Query[]
      */
@@ -95,10 +101,16 @@ class Router
     }
 }
 
+/**
+ * Prints variabels readable
+ * @param $dump
+ * @return void
+ */
+#[NoReturn]
 function dd($dump): void
 {
     echo "<pre>";
     var_dump($dump);
-    die();
     echo "</pre>";
+    die();
 }

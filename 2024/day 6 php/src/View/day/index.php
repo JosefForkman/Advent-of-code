@@ -6,14 +6,20 @@ $fils = array_diff($fils, array('.', '..', 'index.php', 'index.html'));
     <?php
     foreach ($fils as $file) {
         $filePath = 'src/View/day/' . $file;
+        $fileName = pathinfo($file, PATHINFO_FILENAME);
         if (is_dir($filePath)) {
-            $fileName = pathinfo($file, PATHINFO_FILENAME);
-            print_r($filePath);
     ?>
             <li>
-                <a href="/day/<?= $fileName ?>/index.php">Day <?= $fileName ?></a>
+                <a href="/day/<?= $fileName ?>">Day <?= $fileName ?></a>
+            </li>
+        <?php
+        } else {
+        ?>
+            <li>
+                <a href="/day/<?= $fileName ?>">Day <?= $fileName ?></a>
             </li>
     <?php
+
         }
     }
     ?>
