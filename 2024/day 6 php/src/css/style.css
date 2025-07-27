@@ -13,3 +13,32 @@ header {
         }
     }
 }
+
+.row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: fit-content;
+
+    .col {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+
+        &.obstacle {
+            background-color: #ffcccc;
+            color: #ff0000;
+            font-weight: bold;
+        }
+        &.player {
+            background-color: #ccffcc;
+            color: #008000;
+            font-weight: bold;
+        }
+    }
+}
