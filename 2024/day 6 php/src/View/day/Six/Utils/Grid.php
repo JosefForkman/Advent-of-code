@@ -8,6 +8,7 @@ class Grid extends Cord
         public int  $x,
         public int  $y,
         public bool $obstacle = false,
+        public bool $visaed = false,
     )
     {
         parent::__construct($this->x, $this->y);
