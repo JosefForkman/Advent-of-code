@@ -46,7 +46,7 @@ class Router
     public static function View(string $path): void
     {
         // check if it is a file or a directory
-        $filePath = dirname(__DIR__) . "/" . "view" . "/" . $path;
+        $filePath = dirname(__DIR__) . "/" . "View" . "/" . $path;
         if (is_dir($filePath)) {
             $filePath .= "/index.php";
         } else {
