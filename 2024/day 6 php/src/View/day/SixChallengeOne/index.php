@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Adventofcode\Day6\View\day\Six;
+namespace Adventofcode\Day6\View\day\SixChallengeOne;
 
-use Adventofcode\Day6\View\day\Six\Utils\Player;
-use Adventofcode\Day6\View\day\Six\Utils\Grid;
-use Adventofcode\Day6\View\day\Six\Enum\Direction;
+use Adventofcode\Day6\View\day\SixChallengeTwo\Enum\Direction;
+use Adventofcode\Day6\View\day\SixChallengeTwo\Utils\Grid;
+use Adventofcode\Day6\View\day\SixChallengeTwo\Utils\Player;
 
-use function Adventofcode\Day6\utils\dd;
-
-$file = __DIR__ . '/input.txt';
+$file = __DIR__ . '/example.txt';
 
 $grids = [];
 $player = null;
@@ -62,7 +60,6 @@ foreach (file($file) as $line) {
 // Initialize the grid with obstacles and player
 for ($y = 0; $y < count($grids); $y++) {
     for ($x = 0; $x < count($grids[$y]); $x++) {
-        $grid = $grids[$y][$x];
         if ($grids[$y][$x] === '#') {
             // Initialize obstacle grid cell
             $grids[$y][$x] = new Grid($x, $y, true);
@@ -76,6 +73,7 @@ for ($y = 0; $y < count($grids); $y++) {
         }
     }
 }
+
 
 
 while (true) {
@@ -96,6 +94,7 @@ while (true) {
         print_r("Player is out of bounds at (x: $x, y: $y). Game Over!\n");
         break;
     }
+    
     if (nextPlayerCanMove($player, $grids)) {
         $player->nextDirection();
     }
@@ -116,8 +115,8 @@ while (true) {
 // echo "<h1>Day Six</h1>";
 
 echo "<h2>Player History</h2>";
-$movesmade = array_reduce($grids, fn($current, $row) => $current + array_reduce($row, fn($count, $grid) => $count + ($grid->visaed ? 1 : 0), 0), 0);
-echo "<p>Moves made: $movesmade</p>";
+$movesMade = array_reduce($grids, fn($current, $row) => $current + array_reduce($row, fn($count, $grid) => $count + ($grid->visaed ? 1 : 0), 0), 0);
+echo "<p>Moves made: $movesMade</p>";
 
 // Render the grid
 foreach ($grids as $row) {
