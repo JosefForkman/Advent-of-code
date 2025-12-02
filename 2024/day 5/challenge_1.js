@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-const file = readFileSync("example1.txt", { encoding: "utf8" }).split(
+const file = readFileSync("input1.txt", { encoding: "utf8" }).split(
     "\r\n\r\n",
 );
 
@@ -15,7 +15,7 @@ const solosion = evaluatePageRoles(newPages, roles);
 
 const gropeSolosion = Object.values(Object.groupBy(solosion, ({ row }) => row));
 
-console.log(newPages);
+// console.log(newPages);
 
 const correctRows = [];
 for (let i = 0; i < gropeSolosion.length; i++) {
@@ -23,7 +23,7 @@ for (let i = 0; i < gropeSolosion.length; i++) {
     correctRows.push(grop.every((v) => v.correct));
 }
 
-console.log(CountRows(correctRows, newPages));
+// console.log(CountRows(correctRows, newPages));
 
 function CountRows(correctRows, newPages) {
     let count = 0;
@@ -64,7 +64,7 @@ for (let row = 0; row < roles.length; row++) {
         const b = page.findIndex((pg) => pg == role.x);
         if (a != -1 && b != -1) {
             const correct = a > b;
-            console.log({a, b, correct});
+            // console.log({a, b, correct});
             if (correct) {
                 
             }
@@ -72,4 +72,4 @@ for (let row = 0; row < roles.length; row++) {
         }
     });
 }
-// console.log(t);
+console.log(t);
