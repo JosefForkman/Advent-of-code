@@ -1,6 +1,6 @@
 <?php
 
-namespace Adventofcode\Day6\View\day\Six\Enum;
+namespace Adventofcode\Day6\View\day\SixChallengeTwo\Enum;
 
 enum Direction: int
 {
